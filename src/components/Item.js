@@ -4,7 +4,7 @@ import ItemCount from './ItemCount';
 
 const Item = ({data}) => {
     const { id, nombre, precio, stock} = data
-    
+
     return (
         <Grid item md='auto'>
             <Card sx={{ width: 250, textAlign: 'center', height: 450 }}>
@@ -15,13 +15,14 @@ const Item = ({data}) => {
                     sx={{height:280}}
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
+                    <Typography gutterBottom variant="h5" component="div" color='secondary'>
                         {nombre}
                     </Typography>
-                    <Typography variant="h5" color="text.secondary">
+                    <Typography variant="h5">
                         {`$${precio}`}
                     </Typography>
-                    <ItemCount stock={stock} initial={1} />
+
+                    <ItemCount stock={stock}/>
                 </CardContent>
             </Card>
         </Grid>
