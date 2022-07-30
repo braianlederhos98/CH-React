@@ -51,7 +51,7 @@ const ItemList = ({producto}) => {
     >
       {categoria.map( (prod) => {
             if (categoria.length <= 1) {
-              return <ItemDetail data={prod} ></ItemDetail>
+              return <ItemDetail data={prod} key={`${prod.id}`}></ItemDetail>
             } else {
               return <Item data={prod} key={`${prod.id}`} />    
             }
