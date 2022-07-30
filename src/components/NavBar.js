@@ -2,8 +2,9 @@ import * as React from 'react';
 import CartWidget from './CartWidget';
 import {AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Avatar, Button, Tooltip, MenuItem }from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Link } from 'react-router-dom';
 
-const pages = ['Productos', 'Sobre nosotros', 'FAQs'];
+const pages = [['Remeras','category/remeras'],['Buzos', 'category/buzos'],['Sobre nosotros', '/about'], ['FAQs','/faq']];
 const settings = ['Cuenta', 'Pedidos', 'Logout'];
 
 const NavBar = () => {
@@ -31,7 +32,9 @@ const NavBar = () => {
         <Container maxWidth="xl">
             <Toolbar disableGutters>
                 <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 10 }} >
-                    <img src='/assets/img/logo.png' alt='Logo' />
+                    <Link to={'/'}>
+                        <img src='/assets/img/logo.png' alt='Logo' />
+                    </Link>
                 </Box>
                 <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                     <IconButton
@@ -62,11 +65,16 @@ const NavBar = () => {
                         display: { xs: 'block', md: 'none' },
                     }}
                     >
-                    {pages.map((page) => (
-                        <MenuItem key={page} onClick={handleCloseNavMenu}>
-                            <Typography textAlign="center" sx={{color: 'gray', fontWeight: 700 }}>{page}</Typography>
-                        </MenuItem>
-                    ))}
+                    {pages.map((page)=>{
+                        return (
+                            <Link to={page[1]} key={page[0]} >
+                                <MenuItem onClick={handleCloseNavMenu}>
+                                    <Typography textAlign="center" sx={{color: 'gray', fontWeight: 700 }}>{page[0]}</Typography>
+                                </MenuItem>
+                            </Link>
+                        )
+                    })}
+
                     </Menu>
                 </Box>
                 <Box
@@ -80,18 +88,22 @@ const NavBar = () => {
                     textDecoration: 'none',
                     }}
                 >
-                    <img src='/assets/img/logo.png' alt='Logo' />
+                    <Link to={'/'}>
+                        <img src='/assets/img/logo.png' alt='Logo' />
+                    </Link>
                 </Box>
                 <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                    {pages.map((page) => (
-                    <Button
-                        key={page}
+                {pages.map((page) => (
+                    <Link to={page[1]} key={page[0]}>
+                        <Button
+                        key={page[0]}
                         onClick={handleCloseNavMenu}
-                        sx={{ m: 2, color: '#555555', display: 'block', fontWeight: 700, fontSize: '18px'}}
-                    >
-                        {page}
-                    </Button>
-                    ))}
+                        sx={{ m: 2, color: '#555555', display: 'block', fontWeight: 700, fontSize: '12px'}}
+                        >
+                            {page[0]}
+                        </Button>
+                    </Link>
+                ))}
                 </Box>
                 <CartWidget></CartWidget>
                 <Box sx={{ flexGrow: 0}}>
