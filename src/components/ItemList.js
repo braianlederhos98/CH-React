@@ -2,11 +2,13 @@ import { useEffect, useState} from 'react'
 import Item from './Item'
 import { Grid } from '@mui/material'
 import { useParams } from 'react-router-dom'
-import ItemDetail from './ItemDetail'
+//import ItemDetail from './ItemDetail'
+import ItemDetailContainer from './ItemDetailContainer'
 
 const ItemList = ({producto}) => {
   let categorias = [...producto]
   const { idProduct, categoryId} = useParams() 
+  const params = useParams() 
   const [ categoria, setCat ] = useState([])
 
   const searchCat = () =>{
@@ -19,40 +21,28 @@ const ItemList = ({producto}) => {
     })
   }
 
-  const searchItem = () =>{
-    categorias = []
-    producto.map((c) => {
-      if (c.id === parseInt(idProduct)) {
-        categorias.push(c)
-        setCat(categorias)
-      }
-    })
-  }
-
   useEffect(()=>{
     if (categoryId === 'remeras') {
+      //console.log(params)
       searchCat()
     } else if (categoryId === 'buzos') {
       searchCat()
-    } else if(idProduct) {
-      searchItem()
-    } else { 
+    } else if(params.lenght === undefined) { 
       setCat(categorias)
     }
-  }, [categoryId, producto, idProduct])
+  }, [categoryId, producto])
 
   return (
     <Grid
       container
-      spacing={3}
-      alignItems="center"
+      spacing={4}
       alignContent="center"
       justifyContent="center"
     >
       {categoria.map( (prod) => {
-            if (categoria.length <= 1) {
-              return <ItemDetail data={prod} key={`${prod.id}`}></ItemDetail>
-            } else {
+            if (idProduct) {
+              return <ItemDetailContainer data={prod} key={`${prod.id}`}></ItemDetailContainer>
+            } else if (categoryId || params.lenght === undefined) {
               return <Item data={prod} key={`${prod.id}`} />    
             }
           }

@@ -3,10 +3,10 @@ import React from 'react'
 import ItemCount from './ItemCount'
 
 const ItemDetail = ({data}) => {
-
-    const { id, nombre, precio, stock} = data
-
+    const { id, nombre, precio, stock} = data 
+    
     return (
+
     <Container sx={{
         marginTop: 6,
         height: '80vh', 

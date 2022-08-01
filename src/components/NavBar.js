@@ -45,7 +45,7 @@ const NavBar = () => {
                     onClick={handleOpenNavMenu}
                     color="inherit"
                     >
-                    <MenuIcon sx={{color:'#555555'}} />
+                        <MenuIcon sx={{color:'#555555'}} />
                     </IconButton>
                     <Menu
                     id="menu-appbar"

@@ -8,7 +8,7 @@ const Item = ({data}) => {
 
     return (
         <Grid item md='auto'>
-                <Card sx={{ width: 250, textAlign: 'center', height: 450 }}>
+                <Card sx={{ width: 250, textAlign: 'center', height: 420 }}>
                     <CardMedia
                         component="img"
                         alt="green iguana"
