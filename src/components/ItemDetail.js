@@ -6,47 +6,38 @@ const ItemDetail = ({data}) => {
     const { id, nombre, precio, stock} = data 
     
     return (
-
-    <Container sx={{
-        marginTop: 6,
-        height: '80vh', 
-        width: '100vw',
-        display: 'grid',
-        justifyContent:'center',
-        alignContent: 'center'
-    }}>
         <Card sx={{
-             width: '80vw', 
-             textAlign: 'center', 
-             height: '80vh', 
-             display: 'grid', 
-             gridTemplateColumns: '1fr 1fr',
-             alignItems: 'center'
-                 
+            width:'90%',
+            margin:'auto',
+            marginTop:'4.5rem',
+            textAlign: 'center',
+            minHeight:'200px',
+            display: 'grid', 
+            alignItems: 'center',
+            gridTemplateColumns: '1fr 1fr'
         }}>    
                     <CardMedia
                         component="img"
                         alt="green iguana"
                         src={`/assets/img/${id}.webp`}
-                        sx={{height:'100%', width:'100%'}}
                     />
                     
                     <CardContent sx={{display: 'flex', flexDirection:'column', alignItems:'center'  }}>
                         <Box>
                             <Typography gutterBottom variant="h5" component="span" color='secondary' sx={{
-                                fontSize: '80px',
+                                fontSize: '3vw',
                             }}>
                                 {nombre}
                             </Typography>
                         </Box>
                         
-                        <Box mt={6}>
-                            <Typography variant="h2">
+                        <Box mt={3}>
+                            <Typography variant="h2" sx={{fontSize: '2.7vw'}}>
                                 {`$${precio}`}
                             </Typography>
                         </Box>
-                        <Box mt={6}>
-                            <Typography variant="h4">
+                        <Box mt={3}>
+                            <Typography variant="h4" sx={{fontSize: '2vw'}}>
                                 {`Disponibles: ${stock}`}
                             </Typography>
                         </Box>
@@ -55,7 +46,6 @@ const ItemDetail = ({data}) => {
                         </Box>
                     </CardContent>
         </Card>
-    </Container>
   )
 }
 

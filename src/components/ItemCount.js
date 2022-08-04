@@ -20,20 +20,18 @@ const ItemCount = ({stock}) => {
 
     return (
         <>
-            <Card sx={{display:'flex', flexDirection:'column', width:'10vw'}}>
-                <Box sx={{backgroundColor:'#9c27b0', fontSize: '1.7rem'}}>
+                <Box sx={{backgroundColor:'#9c27b0', fontSize: '3vw', borderRadius:'3px', display:'flex', justifyContent:'center', alignItems:'center'}} mb={1}>
                     <IconButton onClick={removeButton}>
-                        <RemoveIcon/>
+                        <RemoveIcon sx={{backgroundColor:'white', borderRadius:'3px'}}/>
                     </IconButton>
 
                     {cantItems}
 
                     <IconButton onClick={addButton}>
-                        <AddIcon/>
+                        <AddIcon sx={{backgroundColor:'white', borderRadius:'3px'}}/>
                     </IconButton>
                 </Box>
-                <Button size="small" variant='outlined' sx={{fontSize: '1rem', backgroundColor:'white', color:'black'}}>COMPRAR</Button>
-            </Card>
+                <Button size="small" variant='outlined' sx={{fontSize: '1.7vw', backgroundColor:'white', color:'black'}}>COMPRAR</Button>
         </>
     ) 
 }

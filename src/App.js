@@ -1,7 +1,7 @@
 import React from 'react';
 import ItemListContainer from './components/ItemListContainer';
-import NavBar from './components/NavBar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import NavBar from './components/NavBar';
 import Error404 from './components/Error404';
 
 function App() {

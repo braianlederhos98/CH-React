@@ -23,7 +23,7 @@ const ItemListContainer = () => {
   })
 
   return (
-    <Container sx={{marginTop: '6rem', marginBottom: '2rem'}}>
+    <Container sx={{marginTop: '5rem', marginBottom: '2rem'}}>
        <ItemList producto={listItems} ></ItemList>
     </Container>
   )

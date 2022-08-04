@@ -1,6 +1,6 @@
 import { useEffect, useState} from 'react'
 import Item from './Item'
-import { Grid } from '@mui/material'
+import { Box, Grid } from '@mui/material'
 import { useParams } from 'react-router-dom'
 //import ItemDetail from './ItemDetail'
 import ItemDetailContainer from './ItemDetailContainer'
@@ -37,11 +37,14 @@ const ItemList = ({producto}) => {
       container
       spacing={4}
       alignContent="center"
+      alignItems='center'
       justifyContent="center"
     >
       {categoria.map( (prod) => {
             if (idProduct) {
-              return <ItemDetailContainer data={prod} key={`${prod.id}`}></ItemDetailContainer>
+              return (
+                <ItemDetailContainer data={prod} key={`${prod.id}`}></ItemDetailContainer>
+              )
             } else if (categoryId || params.lenght === undefined) {
               return <Item data={prod} key={`${prod.id}`} />    
             }

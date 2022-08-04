@@ -1,3 +1,4 @@
+import { Container } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ItemDetail from './ItemDetail'
@@ -25,7 +26,9 @@ const ItemDetailContainer = ({data}) => {
                     
                     if (i) {
                         console.log('gg')
-                        return <ItemDetail data={i} key={i.id}></ItemDetail>
+                        return (
+                            <ItemDetail data={i} key={i.id}></ItemDetail>
+                        )
                     }
                 })
             }

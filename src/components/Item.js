@@ -14,7 +14,7 @@ const Item = ({data}) => {
                         alt="green iguana"
                         src={`/assets/img/${id}.webp`}
                         sx={{height:280}}
-                        />
+                    />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div" color='secondary'>
                             {nombre}
