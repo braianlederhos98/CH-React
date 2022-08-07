@@ -1,9 +1,11 @@
-import { Card, Container, CardMedia, Typography, CardContent, Box } from '@mui/material'
-import React from 'react'
+import { Card, CardMedia, Typography, CardContent, Box, Button } from '@mui/material'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import ItemCount from './ItemCount'
 
 const ItemDetail = ({data}) => {
     const { id, nombre, precio, stock} = data 
+    const [ quantity, setQuantity ] = useState(0)
     
     return (
         <Card sx={{
@@ -42,7 +44,16 @@ const ItemDetail = ({data}) => {
                             </Typography>
                         </Box>
                         <Box mt={1}>
-                            <ItemCount stock={stock}/>
+
+                            {
+                                quantity >= 1 
+                                ?
+                                    <Link to='/cart'>
+                                        <Button variant='contained' sx={{backgroundColor:'#9c27b0'}}>FINALIZAR COMPRA</Button>
+                                    </Link>
+                                : <ItemCount stock={stock} setQuantity={setQuantity}/>
+                            }
+                            {console.log(quantity)}
                         </Box>
                     </CardContent>
         </Card>

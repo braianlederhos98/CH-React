@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { Box, Button, Card, IconButton } from '@mui/material'
+import { Box, Button, IconButton } from '@mui/material'
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 
-const ItemCount = ({stock}) => {
+const ItemCount = ({stock, setQuantity}) => {
     const [ cantItems, setItem] = useState(1)
 
     const addButton = () => {
@@ -16,6 +16,10 @@ const ItemCount = ({stock}) => {
         if (cantItems <= stock && cantItems > 1) {
             setItem(cantItems - 1)
         }
+    }
+
+    const handleButton = () => {
+        setQuantity(cantItems)
     }
 
     return (
@@ -31,7 +35,7 @@ const ItemCount = ({stock}) => {
                         <AddIcon sx={{backgroundColor:'white', borderRadius:'3px'}}/>
                     </IconButton>
                 </Box>
-                <Button size="small" variant='outlined' sx={{fontSize: '1.7vw', backgroundColor:'white', color:'black'}}>COMPRAR</Button>
+                <Button size="small" variant='contained' onClick={handleButton} sx={{fontSize: '1.7vw', backgroundColor:'#9c27b0', color:'black', fontWeight:'bold' }}>COMPRAR</Button>
         </>
     ) 
 }

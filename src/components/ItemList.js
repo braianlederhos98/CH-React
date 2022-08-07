@@ -1,8 +1,7 @@
 import { useEffect, useState} from 'react'
 import Item from './Item'
-import { Box, Grid } from '@mui/material'
+import { Grid } from '@mui/material'
 import { useParams } from 'react-router-dom'
-//import ItemDetail from './ItemDetail'
 import ItemDetailContainer from './ItemDetailContainer'
 
 const ItemList = ({producto}) => {

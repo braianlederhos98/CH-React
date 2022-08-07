@@ -13,7 +13,6 @@ const ItemDetailContainer = ({data}) => {
     
     const searchItem = () =>{
         if (data.id == idProduct) {
-            console.log(data)
             setItem([data])
         }
     }
@@ -25,7 +24,6 @@ const ItemDetailContainer = ({data}) => {
                 item.map((i)=>{
                     
                     if (i) {
-                        console.log('gg')
                         return (
                             <ItemDetail data={i} key={i.id}></ItemDetail>
                         )
