@@ -9,9 +9,11 @@ Por el momento solo podemos:
 - Visualizar el catálogo.
 - Acceder a diferentes categorías.
 - Acceder al detalle de cada producto con su información correspondiente.
+- Seleccionar la cantidad de productos 
 
 ## Gráfica del proyecto
 
+![remerasjs](https://user-images.githubusercontent.com/104319378/183306600-c06be6b0-9550-4487-b8bd-34179f78f1a8.gif)
 
 
 ## Dependencias
@@ -33,3 +35,4 @@ Los componentes son:
 - ItemDetailContainer.js
 - ItemDetail.js
 - ItemCount.js
+- Checkout.js
