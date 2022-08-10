@@ -6,7 +6,7 @@ import ItemCount from './ItemCount'
 const ItemDetail = ({data}) => {
     const { id, nombre, precio, stock} = data 
     const [ quantity, setQuantity ] = useState(0)
-    
+
     return (
         <Card sx={{
             width:'90%',
@@ -51,9 +51,8 @@ const ItemDetail = ({data}) => {
                                     <Link to='/cart'>
                                         <Button variant='contained' sx={{backgroundColor:'#9c27b0'}}>FINALIZAR COMPRA</Button>
                                     </Link>
-                                : <ItemCount stock={stock} setQuantity={setQuantity}/>
+                                : <ItemCount data={data} setQuantity={setQuantity}/>
                             }
-                            {console.log(quantity)}
                         </Box>
                     </CardContent>
         </Card>

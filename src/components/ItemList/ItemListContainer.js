@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from '@mui/material';
 import ItemList from './ItemList';
-import productos from '../productos.mock'
+import productos from '../../productos.mock'
 
 
 const ItemListContainer = () => {

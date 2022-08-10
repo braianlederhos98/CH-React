@@ -15,7 +15,7 @@ const NavBar = () => {
         setAnchorElNav(event.currentTarget);
     };
     const handleOpenUserMenu = (event) => {
-        console.log(event);
+        console.log(event.currentTarget);
         setAnchorElUser(event.currentTarget);
     };
 
@@ -105,12 +105,14 @@ const NavBar = () => {
                     </Link>
                 ))}
                 </Box>
-                <CartWidget></CartWidget>
+
+                <CartWidget/>
+
                 <Box sx={{ flexGrow: 0}}>
                     <Tooltip title="Open settings">
-                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                        <Avatar src='/assets/img/user.png' alt="Remy Sharp" />
-                    </IconButton>
+                        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                            <Avatar src='/assets/img/user.png' alt="Remy Sharp" />
+                        </IconButton>
                     </Tooltip>
                     <Menu
                     sx={{ mt: '45px' }}
@@ -128,11 +130,11 @@ const NavBar = () => {
                     open={Boolean(anchorElUser)}
                     onClose={handleCloseUserMenu}
                     >
-                    {settings.map((setting) => (
-                        <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                            <Typography textAlign="center" sx={{color: 'gray', fontWeight: 700 }}>{setting}</Typography>
-                        </MenuItem>
-                    ))}
+                        {settings.map((setting) => (
+                            <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                <Typography textAlign="center" sx={{color: 'gray', fontWeight: 700 }}>{setting}</Typography>
+                            </MenuItem>
+                        ))}
                     </Menu>
                 </Box>
             </Toolbar>

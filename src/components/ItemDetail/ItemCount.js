@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Box, Button, IconButton } from '@mui/material'
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
+import { CartContext } from '../CartContext/CartContext'
 
-const ItemCount = ({stock, setQuantity}) => {
+const ItemCount = ({data, setQuantity}) => {
     const [ cantItems, setItem] = useState(1)
+    const { stock } = data
+    const { addToCart } = useContext(CartContext)
 
     const addButton = () => {
         if (cantItems < stock) {
@@ -20,7 +23,10 @@ const ItemCount = ({stock, setQuantity}) => {
 
     const handleButton = () => {
         setQuantity(cantItems)
+        addToCart(data, cantItems)
     }
+
+
 
     return (
         <>
