@@ -8,6 +8,7 @@ const ItemCount = ({data, setQuantity}) => {
     const [ cantItems, setItem] = useState(1)
     const { stock } = data
     const { addToCart } = useContext(CartContext)
+    console.log('data',data)
 
     const addButton = () => {
         if (cantItems < stock) {
@@ -30,7 +31,7 @@ const ItemCount = ({data, setQuantity}) => {
 
     return (
         <>
-                <Box sx={{backgroundColor:'#9c27b0', fontSize: '3vw', borderRadius:'3px', display:'flex', justifyContent:'center', alignItems:'center'}} mb={1}>
+                <Box sx={{color:'white',backgroundColor:'#9c27b0', fontSize: '30px', borderRadius:'3px', display:'flex', justifyContent:'center', alignItems:'center'}} mb={1}>
                     <IconButton onClick={removeButton}>
                         <RemoveIcon sx={{backgroundColor:'white', borderRadius:'3px'}}/>
                     </IconButton>
@@ -41,7 +42,7 @@ const ItemCount = ({data, setQuantity}) => {
                         <AddIcon sx={{backgroundColor:'white', borderRadius:'3px'}}/>
                     </IconButton>
                 </Box>
-                <Button size="small" variant='contained' onClick={handleButton} sx={{fontSize: '1.7vw', backgroundColor:'#9c27b0', color:'black', fontWeight:'bold' }}>COMPRAR</Button>
+                <Button size="small" variant='contained' onClick={handleButton} sx={{fontSize: '20px', backgroundColor:'#9c27b0'}}>COMPRAR</Button>
         </>
     ) 
 }

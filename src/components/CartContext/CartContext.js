@@ -8,10 +8,10 @@ export const CartProvider = ({children}) => {
     const [cart, setCart] = useState([])
 
     
-    const addToCart = ({id, precio, nombre}, cantItems) => {
+    const addToCart = ({id, price, name, image}, cantItems) => {
         const productIndex = cart.findIndex(productInCart => productInCart.id === id);
         if (productIndex === -1) {
-            setCart([...cart, {id, precio, nombre, cantItems}])
+            setCart([...cart, {id, price, name, cantItems, image}])
         } else {
             const cartCopy = [...cart]
             cartCopy[productIndex].cantItems = cartCopy[productIndex].cantItems + cantItems 

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Item = ({data}) => {
     
-    const { id, nombre, precio, stock} = data
+    const { id, name, price, image} = data
 
     return (
         <Grid item md='auto'>
@@ -12,18 +12,19 @@ const Item = ({data}) => {
                     <CardMedia
                         component="img"
                         alt="green iguana"
-                        src={`/assets/img/${id}.webp`}
+                        src={`/assets/img/${image}`}
                         sx={{height:280}}
-                    />
+                    /> 
+                    
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div" color='secondary'>
-                            {nombre}
+                            {name}
                         </Typography>
                         <Typography variant="h5">
-                            {`$${precio}`}
+                            {`$${price}`}
                         </Typography>
                     </CardContent>
-                    <Link to={`/product/${ data.id }`}>
+                    <Link to={`/product/${ id }`}>
                         <Button size="small" variant='contained' color='secondary'>Ver más</Button>
                     </Link>
                 </Card>

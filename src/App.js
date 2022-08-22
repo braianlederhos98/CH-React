@@ -5,6 +5,7 @@ import NavBar from './components/NavBar/NavBar';
 import Error404 from './components/404/Error404';
 import { Checkout } from './components/CheckOut/Checkout';
 import { CartProvider } from './components/CartContext/CartContext';
+import ItemDetailContainer from './components/ItemDetail/ItemDetailContainer';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
             <Routes>
               <Route path='/' element={<ItemListContainer />}></Route>
               <Route path='/cart' element={<Checkout/>}></Route>
-              <Route path='/product/:idProduct' element={<ItemListContainer />}></Route>
+              <Route path='/product/:idProduct' element={<ItemDetailContainer />}></Route>
               <Route path='/category/:categoryId' element={<ItemListContainer />}></Route>
               <Route path='/about' element={<ItemListContainer />}></Route>
               <Route path='/faq' element={<div>Preguntas frecuentes</div>}></Route>

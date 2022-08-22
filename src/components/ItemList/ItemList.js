@@ -2,11 +2,10 @@ import { useEffect, useState} from 'react'
 import Item from './Item'
 import { Grid } from '@mui/material'
 import { useParams } from 'react-router-dom'
-import ItemDetailContainer from '../ItemDetail/ItemDetailContainer'
 
 const ItemList = ({producto}) => {
   let categorias = [...producto]
-  const { idProduct, categoryId} = useParams() 
+  const {categoryId} = useParams() 
   const params = useParams() 
   const [ categoria, setCat ] = useState([])
 
@@ -22,7 +21,6 @@ const ItemList = ({producto}) => {
 
   useEffect(()=>{
     if (categoryId === 'remeras') {
-      //console.log(params)
       searchCat()
     } else if (categoryId === 'buzos') {
       searchCat()
@@ -31,26 +29,26 @@ const ItemList = ({producto}) => {
     }
   }, [categoryId, producto])
 
+
   return (
-    <Grid
-      container
-      spacing={4}
-      alignContent="center"
-      alignItems='center'
-      justifyContent="center"
-    >
-      {categoria.map( (prod) => {
-            if (idProduct) {
+    <>
+        <Grid
+          container
+          spacing={4}
+          alignContent="center"
+          alignItems='center'
+          justifyContent="center"
+        >
+          {categoria.map( (prod) => {
+            if (categoryId || params.lenght === undefined) {
               return (
-                <ItemDetailContainer data={prod} key={`${prod.id}`}></ItemDetailContainer>
-              )
-            } else if (categoryId || params.lenght === undefined) {
-              return <Item data={prod} key={`${prod.id}`} />    
+                  <Item data={prod} key={`${prod.id}`} />
+              )    
             }
-          }
-        )
-      } 
-    </Grid>
+          })
+          } 
+        </Grid>
+    </>
   )
 }
 

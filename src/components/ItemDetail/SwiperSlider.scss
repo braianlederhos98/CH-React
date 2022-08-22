@@ -1,0 +1,17 @@
+.product {
+    max-width: 400px;
+    .swiper-slide{
+        overflow: hidden;
+        .image {
+            width: 90%;
+        }
+    }
+    .swiper-button-prev{
+        left: 0;
+        color: black
+    }
+    .swiper-button-next{
+        right: 0;
+        color: black;
+    }
+}
