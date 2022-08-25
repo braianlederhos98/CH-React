@@ -1,5 +1,5 @@
 import { Card, Typography, CardContent, Box, Button, Grid } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import ItemCount from './ItemCount'
 import { SwiperSlider } from './SwiperSlider'
@@ -9,10 +9,22 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-
+ 
 const ItemDetail = ({data}) => {
     const { name, price, stock} = data 
     const [ quantity, setQuantity ] = useState(0)
+    const [ talleSeleccionado, setTalleSeleccionado] = useState('')
+    const [ sizeButton, setSizeButton] = useState([])
+
+    const buttonSet =  () => {
+        if (stock !== undefined) {
+            setSizeButton(Object.keys(stock))
+        }
+    }
+    useEffect(() => {
+        buttonSet()
+    }, [stock])
+    
 
     return (
         <Card sx={{
@@ -50,20 +62,45 @@ const ItemDetail = ({data}) => {
                             </Box>
                             <Box mt={3}>
                                 <Typography variant="h4" sx={{fontSize: '25px'}}>
-                                    {`Disponibles: ${stock}`}
+                                    Disponibles:
                                 </Typography>
+                                <Typography variant="h6" >
+                                        
+                                    Talle L: { stock !== undefined && stock.L }
+                                </Typography>
+                                <Typography variant="h6" >
+                                    Talle XL: { stock !== undefined && stock.XL }
+                                </Typography>     
                             </Box>
-                            <Box mt={1}>
-
+                            <Box sx={{display:'flex'}}>
                                 {
-                                    quantity >= 1 
-                                    ?
-                                    <Link to='/cart'>
-                                            <Button variant='contained' sx={{backgroundColor:'#9c27b0'}}>FINALIZAR COMPRA</Button>
-                                        </Link>
-                                    : <ItemCount data={data} setQuantity={setQuantity}/>
-                                }
+                                    sizeButton.map((size, i)=>{
+                                        return (
+                                            <Button key={i} onClick={()=>setTalleSeleccionado(size)} color='secondary' size="small" variant='contained' sx={{backgroundColor:'#9c27b0', marginRight:'5px'}}>{size}</Button>
+                                        )
+                                    })
+                                } 
                             </Box>
+                            
+                            {
+
+                            }
+
+                            {
+                                talleSeleccionado !== '' && (
+                                    <Box mt={1}>
+                                        {
+                                            quantity >= 1 
+                                            ?
+                                            <Link to='/cart'>
+                                                    <Button variant='contained' sx={{backgroundColor:'#9c27b0'}} >FINALIZAR COMPRA</Button>
+                                            </Link>
+                                            : <ItemCount data={data} size={talleSeleccionado} stock={stock[talleSeleccionado]} setQuantity={setQuantity}/>
+                                        }
+                                    </Box>
+                                )
+                            }
+                            
                         </CardContent>
                 </Grid>
                 </Grid>     

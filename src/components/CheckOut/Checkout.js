@@ -3,13 +3,15 @@ import { Box, Button, Card, CardMedia, Container, IconButton, Paper, Typography 
 import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {CartContext} from '../CartContext/CartContext'
+import RemoveIcon from '@mui/icons-material/Remove';
+import AddIcon from '@mui/icons-material/Add';
+import ModalComponent from '../Modal/ModalComponent'
 
 
 
 export const Checkout = () => {
-  const {cart, removeItem, clear} = useContext(CartContext)
+  const {cart, removeItem, clear, removeItemQuantity, addItem} = useContext(CartContext)
   const [total, setTotal] = useState([0])
-  
   const totalCart = () =>{
     let subTotals = [0]
     
@@ -20,6 +22,7 @@ export const Checkout = () => {
     let newTotal = subTotals.reduce((acc,item)=>acc=acc+item)
     setTotal(newTotal)
   }
+
 
   useEffect(() => {
     totalCart()
@@ -33,19 +36,21 @@ export const Checkout = () => {
             <Card>
                 <Typography textAlign="center">Carrito</Typography>
                 {
-                  cart.map((product)=>{
-                    console.log(product)
+                  cart.map((product, i)=>{
                     return (
-                      <Paper key={product.id} elevation={1} sx={{ display: 'flex', justifyContent:'space-around', alignItems:'center', marginBottom:'10px'}}>
+                      <Paper key={product.id + i} elevation={1} sx={{ display: 'flex', justifyContent:'space-around', alignItems:'center', marginBottom:'10px'}}>
                         <CardMedia
                           component="img"
                           alt={`${product.name}`}
                           src={`/assets/img/${product.image}`}
-                          sx={{maxWidth:'180px', maxHeight:'180px'}}
+                          sx={{maxWidth:'180px', height:'100%'}}
                         />
                         <Box>
                           <Typography component="div" variant="h5">
                             Nombre: {`${product.name}`}
+                          </Typography>
+                          <Typography variant="subtitle1" color="text.secondary" component="div">
+                            Talle: {`${product.size}`}
                           </Typography>
                           <Typography variant="subtitle1" color="text.secondary" component="div">
                             Cantidad: {`${product.cantItems}`}
@@ -58,9 +63,17 @@ export const Checkout = () => {
                           <Typography component="div" variant="h5" >
                             Subtotal: {`$${product.price*product.cantItems}`}
                           </Typography>
-                          <IconButton onClick={()=>removeItem(product.id)} sx={{marginTop:'10px', color:'black'}}>
-                            <Delete/>
-                          </IconButton>
+                          <Box sx={{display:'flex', marginTop:'10px', color:'black'}} >
+                            <IconButton onClick={()=>removeItemQuantity(product.stock, product.size, product.id, product.price)}>
+                              <RemoveIcon/>
+                            </IconButton>
+                            <IconButton onClick={()=>addItem(product.stock, product.size, product.id, product.price)}>
+                              <AddIcon/>
+                            </IconButton>
+                            <IconButton onClick={()=>removeItem(product.id, product.size, product.price, product.cantItems)} >
+                              <Delete/>
+                            </IconButton>
+                          </Box>
                         </Box>
                       </Paper>
                     )
@@ -78,6 +91,7 @@ export const Checkout = () => {
                         <Typography textAlign="center" fontWeight='bold'>
                           TOTAL = ${ total }
                         </Typography>
+                        <ModalComponent total={total}/>
                       </>
                     ) : (
                       <>
@@ -93,11 +107,7 @@ export const Checkout = () => {
                       </Box>
                       </>
                     )
-
                   }
-                  
-
-                  
                 </Box>
             </Card>
             

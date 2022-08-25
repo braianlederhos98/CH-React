@@ -1,14 +1,13 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Box, Button, IconButton } from '@mui/material'
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import { CartContext } from '../CartContext/CartContext'
 
-const ItemCount = ({data, setQuantity}) => {
+const ItemCount = ({data, setQuantity, size, stock}) => {
+    const { id } = data
     const [ cantItems, setItem] = useState(1)
-    const { stock } = data
-    const { addToCart } = useContext(CartContext)
-    console.log('data',data)
+    const { addToCart, cart } = useContext(CartContext)
 
     const addButton = () => {
         if (cantItems < stock) {
@@ -21,14 +20,27 @@ const ItemCount = ({data, setQuantity}) => {
             setItem(cantItems - 1)
         }
     }
-
+ 
     const handleButton = () => {
-        setQuantity(cantItems)
-        addToCart(data, cantItems)
+        const searchItem = cart.find((item)=> item.id === id && item.size === size)
+        if (searchItem) {
+            if ((searchItem.cantItems+cantItems) < stock) {
+                setQuantity(cantItems)
+                addToCart(data, cantItems, size)
+            } else {
+                console.warn('STOCK INSUFICIENTE')
+            }
+        } else {
+            setQuantity(cantItems)
+            addToCart(data, cantItems, size)
+        }
+        
     }
 
-
-
+    useEffect(() => {
+      setItem(1)
+    }, [stock])
+    
     return (
         <>
                 <Box sx={{color:'white',backgroundColor:'#9c27b0', fontSize: '30px', borderRadius:'3px', display:'flex', justifyContent:'center', alignItems:'center'}} mb={1}>

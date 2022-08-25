@@ -17,7 +17,6 @@ const ItemListContainer = () => {
       product.id = doc.id
       return product
     })
-    console.log(productsList)
     return productsList
   }
 
