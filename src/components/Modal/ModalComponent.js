@@ -60,7 +60,7 @@ const ModalComponent = () => {
 
   const sendData = async (orden) => {
     const collectionOrder = collection(db,'ordenes')
-    const
+    const orderDoc = await addDoc(collectionOrder, orden)
   }
 
 
