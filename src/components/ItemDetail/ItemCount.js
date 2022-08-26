@@ -3,11 +3,24 @@ import { Box, Button, IconButton } from '@mui/material'
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import { CartContext } from '../CartContext/CartContext'
+import Toastify from 'toastify-js'
+import "toastify-js/src/toastify.css"
 
 const ItemCount = ({data, setQuantity, size, stock}) => {
     const { id } = data
     const [ cantItems, setItem] = useState(1)
     const { addToCart, cart } = useContext(CartContext)
+
+    const successAlert = ()=> {
+        Toastify({
+          text: "¡Agregado al carrito con éxito!",
+          duration: 3000,
+          style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)"
+          }
+        }).showToast();
+      
+    }
 
     const addButton = () => {
         if (cantItems < stock) {
@@ -27,12 +40,14 @@ const ItemCount = ({data, setQuantity, size, stock}) => {
             if ((searchItem.cantItems+cantItems) < stock) {
                 setQuantity(cantItems)
                 addToCart(data, cantItems, size)
+                successAlert()
             } else {
                 console.warn('STOCK INSUFICIENTE')
             }
         } else {
             setQuantity(cantItems)
             addToCart(data, cantItems, size)
+            successAlert()
         }
         
     }

@@ -39,7 +39,7 @@ const ModalComponent = () => {
     buyer: {},
     total: totalPrice
   })
-  console.log(order)
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',

@@ -32,7 +32,8 @@ const ItemDetail = ({data}) => {
             margin:'auto',
             marginTop:'6rem',
             textAlign: 'center',
-            maxHeight:'900px'
+            minHeight:'500px',
+            maxHeight:'1000px'
         }}>           
                 <Grid 
                     container 

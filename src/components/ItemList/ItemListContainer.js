@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import ItemList from './ItemList';
 import { collection, getDocs } from 'firebase/firestore/lite';
 import db from '../../firebase/config';
@@ -8,6 +8,7 @@ import db from '../../firebase/config';
 const ItemListContainer = () => {
   
   const [ listItems, setItem  ] = useState([])
+  const [ loading, setLoading ] = useState(false)
 
   const getProducts = async () => {
     const productCollection = collection(db, 'productos')
@@ -21,17 +22,26 @@ const ItemListContainer = () => {
   }
 
   useEffect(()=>{
-
     getProducts()
-      .then(res => setItem(res))
+      .then(res => {
+        setItem(res)
+        setLoading(true)
+      })
       .catch(console.log)
-
-
   }, [])
 
   return (
     <Container sx={{marginTop: '5rem', marginBottom: '2rem'}}>
-       <ItemList producto={listItems} ></ItemList>
+      {
+        loading ? <ItemList producto={listItems} ></ItemList> : (
+          <Box sx={{position:'absolute', top:'50%', left:'40%'}}>
+            <Typography variant='h4'>
+              Cargando...
+            </Typography>
+          </Box>
+        )
+      }
+      
     </Container>
   )
   
