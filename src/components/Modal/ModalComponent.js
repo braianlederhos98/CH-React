@@ -2,7 +2,7 @@ import {useContext, useState} from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
-import { TextField } from '@mui/material';
+import { TextField, Typography } from '@mui/material';
 import {CartContext} from '../CartContext/CartContext'
 import db from '../../firebase/config.js'
 import { collection, addDoc } from 'firebase/firestore/lite';
@@ -25,6 +25,8 @@ const ModalComponent = () => {
   console.log(totalPrice)
 
   const [open, setOpen] = useState(false);
+  const [success, setSuccess] = useState(false)
+
   const [ order, setOrder ] = useState({
     items: cart.map((product)=>{
       return {
@@ -63,6 +65,7 @@ const ModalComponent = () => {
   const sendData = async (orden) => {
     const collectionOrder = collection(db,'ordenes')
     const orderDoc = await addDoc(collectionOrder, orden)
+    setSuccess(orderDoc.id)
   }
 
 
@@ -76,45 +79,55 @@ const ModalComponent = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <form onSubmit={sendForm}>
-              <TextField
-                  label="Nombre y Apellido"
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  margin="dense"
-                  fullWidth
-                  variant="outlined"
-                  helperText="Campo obligatorio"
-                  onChange={handleChange}
-                  required
-              />
-              <TextField
-                  label="Email"
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  margin="dense"
-                  fullWidth
-                  variant="outlined"
-                  helperText="Campo obligatorio"
-                  onChange={handleChange}
-                  required
-              />
-              <TextField
-                  label="Phone"
-                  type="number"
-                  name="phone"
-                  value={formData.phone}
-                  margin="dense"
-                  fullWidth
-                  variant="outlined"
-                  helperText="Campo obligatorio"
-                  onChange={handleChange}
-                  required
-              />
-              <Button type='submit'>Enviar</Button>
-          </form>
+          {
+            success ? (<>
+              <Typography variant='h5' textAlign='center' sx={{color:'green'}}>
+                ¡Compra realizada con Éxito!
+              </Typography>
+              <Typography variant='h6' mt={2}>
+                Su código de compra es: {success}
+              </Typography>
+            </>) : (
+              <form onSubmit={sendForm}>
+                  <TextField
+                      label="Nombre y Apellido"
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      margin="dense"
+                      fullWidth
+                      variant="outlined"
+                      helperText="Campo obligatorio"
+                      onChange={handleChange}
+                      required
+                  />
+                  <TextField
+                      label="Email"
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      margin="dense"
+                      fullWidth
+                      variant="outlined"
+                      helperText="Campo obligatorio"
+                      onChange={handleChange}
+                      required
+                  />
+                  <TextField
+                      label="Phone"
+                      type="number"
+                      name="phone"
+                      value={formData.phone}
+                      margin="dense"
+                      fullWidth
+                      variant="outlined"
+                      helperText="Campo obligatorio"
+                      onChange={handleChange}
+                      required
+                  />
+                  <Button type='submit'>Enviar</Button>
+              </form>)
+          }
         </Box>
       </Modal>
     </div>

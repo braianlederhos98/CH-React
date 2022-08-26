@@ -12,6 +12,7 @@ import ModalComponent from '../Modal/ModalComponent'
 export const Checkout = () => {
   const {cart, removeItem, clear, removeItemQuantity, addItem} = useContext(CartContext)
   const [total, setTotal] = useState([0])
+
   const totalCart = () =>{
     let subTotals = [0]
     
