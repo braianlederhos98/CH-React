@@ -33,9 +33,11 @@ const ModalComponent = () => {
         title: product.name
       }
     }),
+    date: new Date().toLocaleDateString(),
     buyer: {},
     total: totalPrice
   })
+  console.log(order)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
