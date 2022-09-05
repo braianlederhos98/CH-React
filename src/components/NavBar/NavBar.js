@@ -3,19 +3,26 @@ import CartWidget from './CartWidget';
 import {AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Avatar, Button, Tooltip, MenuItem }from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../UserContext/UserContext';
+import { app } from '../../firebase/config'
+import { getAuth, signOut } from 'firebase/auth'
+
+
+const auth = getAuth(app)
 
 const pages = [['Remeras','category/remeras'],['Buzos', 'category/buzos'],['Sobre nosotros', '/about'], ['FAQs','/faq']];
-const settings = ['Cuenta', 'Pedidos', 'Logout'];
+const settings = ['Cuenta', 'Pedidos'];
 
 const NavBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
+    const {user} = React.useContext(UserContext)
+
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
     const handleOpenUserMenu = (event) => {
-        console.log(event.currentTarget);
         setAnchorElUser(event.currentTarget);
     };
 
@@ -108,35 +115,65 @@ const NavBar = () => {
 
                 <CartWidget/>
 
-                <Box sx={{ flexGrow: 0}}>
-                    <Tooltip title="Open settings">
-                        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                            <Avatar src='/assets/img/user.png' alt="Remy Sharp" />
-                        </IconButton>
-                    </Tooltip>
-                    <Menu
-                    sx={{ mt: '45px' }}
-                    id="menu-appbar"
-                    anchorEl={anchorElUser}
-                    anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                    }}
-                    open={Boolean(anchorElUser)}
-                    onClose={handleCloseUserMenu}
-                    >
-                        {settings.map((setting) => (
-                            <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                <Typography textAlign="center" sx={{color: 'gray', fontWeight: 700 }}>{setting}</Typography>
-                            </MenuItem>
-                        ))}
-                    </Menu>
-                </Box>
+                {
+                    user ? (
+                        <Box sx={{ flexGrow: 0}}>
+                            <Tooltip title="Open settings">
+                                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                    <Avatar src='/assets/img/user.png' alt="Remy Sharp" />
+                                </IconButton>
+                            </Tooltip>
+                            <Menu
+                            sx={{ mt: '45px' }}
+                            id="menu-appbar"
+                            anchorEl={anchorElUser}
+                            anchorOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            open={Boolean(anchorElUser)}
+                            onClose={handleCloseUserMenu}
+                            >
+                                {settings.map((setting) => (
+                                    <Link to={`/${setting.toLowerCase()}`} key={setting}>
+                                        <MenuItem onClick={handleCloseUserMenu}>
+                                            <Typography textAlign="center" sx={{color: 'gray', fontWeight: 700 }}>{setting}</Typography>
+                                        </MenuItem>
+                                    </Link>
+                                ))}
+                            </Menu>
+                            <Link to='/'>
+                                <Button 
+                                    onClick={()=>signOut(auth)} 
+                                    color='secondary' 
+                                    variant='outlined' 
+                                    size='small'
+                                    sx={{marginLeft:'10px'}}
+                                >
+                                    Logout
+                                </Button>
+                            </Link>
+                        </Box>
+                    ) : (
+                        <>
+                            <Link to='/login'>
+                                <Button
+                                    color='secondary' 
+                                    variant='outlined' 
+                                    size='small'
+                                    sx={{marginLeft:'10px'}}
+                                >
+                                    Login
+                                </Button>
+                            </Link>
+                        </>
+                    )
+                }
             </Toolbar>
         </Container>
         </AppBar>

@@ -35,11 +35,13 @@ const ItemDetailContainer = () => {
     <>
       {
         loading ? <ItemDetail data={item}></ItemDetail> : (
+        <Box sx={{width:'100%', minHeight:'70vh' }}>
           <Box sx={{position:'absolute', top:'30%', left:'40%'}}>
             <Typography variant='h4'>
               Cargando...
             </Typography>
           </Box>
+        </Box>
         )
       }
     </>

@@ -16,7 +16,8 @@ const ItemCount = ({data, setQuantity, size, stock}) => {
           text: "¡Agregado al carrito con éxito!",
           duration: 3000,
           style: {
-            background: "linear-gradient(to right, #00b09b, #96c93d)"
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+            marginTop: '4rem'
           }
         }).showToast();
       

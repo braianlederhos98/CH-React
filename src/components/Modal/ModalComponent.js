@@ -2,10 +2,12 @@ import {useContext, useState} from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
-import { TextField, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import {CartContext} from '../CartContext/CartContext'
 import db from '../../firebase/config.js'
 import { collection, addDoc } from 'firebase/firestore/lite';
+import ContactInfo from './ContactInfo';
+import { Link } from 'react-router-dom';
 
 const style = {
   position: 'absolute',
@@ -21,10 +23,12 @@ const style = {
 
 const ModalComponent = () => {
 
-  const {cart, totalPrice} = useContext(CartContext)
-  console.log(totalPrice)
+  const {cart, totalPrice, clear} = useContext(CartContext)
 
   const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const [success, setSuccess] = useState(false)
 
   const [ order, setOrder ] = useState({
@@ -40,24 +44,7 @@ const ModalComponent = () => {
     total: totalPrice
   })
   
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: ''
-  })
-
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-  const handleChange = (e) =>{
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-    console.log(formData)
-  }
-
-  const sendForm = (e) => {
+  const sendForm = ( e, formData ) => {
     e.preventDefault()
     sendData({...order, buyer: formData})
   }
@@ -67,8 +54,7 @@ const ModalComponent = () => {
     const orderDoc = await addDoc(collectionOrder, orden)
     setSuccess(orderDoc.id)
   }
-
-
+  
   return (
     <div>
       <Button variant="outlained" sx={{ fontWeight:'bold', fontSize:'1rem', color:'black', backgroundColor:'white'}} onClick={handleOpen}>COMPRAR</Button>
@@ -87,46 +73,10 @@ const ModalComponent = () => {
               <Typography variant='h6' mt={2}>
                 Su código de compra es: {success}
               </Typography>
-            </>) : (
-              <form onSubmit={sendForm}>
-                  <TextField
-                      label="Nombre y Apellido"
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      margin="dense"
-                      fullWidth
-                      variant="outlined"
-                      helperText="Campo obligatorio"
-                      onChange={handleChange}
-                      required
-                  />
-                  <TextField
-                      label="Email"
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      margin="dense"
-                      fullWidth
-                      variant="outlined"
-                      helperText="Campo obligatorio"
-                      onChange={handleChange}
-                      required
-                  />
-                  <TextField
-                      label="Phone"
-                      type="number"
-                      name="phone"
-                      value={formData.phone}
-                      margin="dense"
-                      fullWidth
-                      variant="outlined"
-                      helperText="Campo obligatorio"
-                      onChange={handleChange}
-                      required
-                  />
-                  <Button type='submit'>Enviar</Button>
-              </form>)
+              <Link to='/'>
+                <Button onClick={()=>clear()}>Aceptar</Button>
+              </Link>
+            </>) : (<ContactInfo sendForm={sendForm}/>)
           }
         </Box>
       </Modal>

@@ -33,7 +33,7 @@ export const Checkout = () => {
 
   return (
     <>
-        <Container sx={{marginTop: '6rem'}}>
+        <Container sx={{marginTop: '6rem', minHeight:'67vh'}}>
             <Card>
                 <Typography textAlign="center">Carrito</Typography>
                 {
@@ -65,10 +65,10 @@ export const Checkout = () => {
                             Subtotal: {`$${product.price*product.cantItems}`}
                           </Typography>
                           <Box sx={{display:'flex', marginTop:'10px', color:'black'}} >
-                            <IconButton onClick={()=>removeItemQuantity(product.stock, product.size, product.id, product.price)}>
+                            <IconButton onClick={()=>removeItemQuantity(product.size, product.id)}>
                               <RemoveIcon/>
                             </IconButton>
-                            <IconButton onClick={()=>addItem(product.stock, product.size, product.id, product.price)}>
+                            <IconButton onClick={()=>addItem(product.stock, product.size, product.id)}>
                               <AddIcon/>
                             </IconButton>
                             <IconButton onClick={()=>removeItem(product.id, product.size, product.price, product.cantItems)} >
@@ -96,16 +96,16 @@ export const Checkout = () => {
                       </>
                     ) : (
                       <>
-                      <Box display='flex' flexDirection='column' mt={2}>
-                        <Typography textAlign="center" fontWeight='bold'>
-                          Vacio
-                        </Typography>
-                        <Link to='/'>
-                          <Button variant="outlained"  endIcon={<ArrowForwardIos />} sx={{fontWeight:'bold', fontSize:'1rem', color:'black'}} onClick={clear}>
-                            Ir a inicio
-                          </Button>
-                        </Link>
-                      </Box>
+                        <Box display='flex' flexDirection='column' mt={2}>
+                          <Typography textAlign="center" fontWeight='bold'>
+                            Vacio
+                          </Typography>
+                          <Link to='/'>
+                            <Button variant="outlained"  endIcon={<ArrowForwardIos />} sx={{fontWeight:'bold', fontSize:'1rem', color:'black'}}>
+                              Ir a inicio
+                            </Button>
+                          </Link>
+                        </Box>
                       </>
                     )
                   }

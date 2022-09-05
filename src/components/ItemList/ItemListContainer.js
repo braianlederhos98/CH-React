@@ -31,10 +31,10 @@ const ItemListContainer = () => {
   }, [])
 
   return (
-    <Container sx={{marginTop: '5rem', marginBottom: '2rem'}}>
+    <Container sx={{marginTop: '5rem', marginBottom: '2rem', minHeight:'67vh'}}>
       {
         loading ? <ItemList producto={listItems} ></ItemList> : (
-          <Box sx={{position:'absolute', top:'50%', left:'40%'}}>
+          <Box sx={{position:'absolute', top:'30%', left:'40%'}}>
             <Typography variant='h4'>
               Cargando...
             </Typography>

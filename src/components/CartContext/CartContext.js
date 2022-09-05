@@ -1,13 +1,32 @@
-import React, { useState } from 'react'
-import {createContext} from 'react'
+import React, { useEffect, useState } from 'react'
+import { createContext } from 'react'
+import Toastify from 'toastify-js'
+import "toastify-js/src/toastify.css"
 
 export const CartContext = createContext()
 
 export const CartProvider = ({children}) => {
 
-    const [cart, setCart] = useState([])
+    const [cart, setCart] = useState(()=>{
+        const CarritoFromLocal = localStorage.getItem('carrito')
+        if (CarritoFromLocal) {
+            return JSON.parse(CarritoFromLocal)
+        }else {
+            return []
+        }
+    })
     const [totalPrice, setTotalPrice] = useState(0)
 
+    const successAlert = (text)=> {
+        Toastify({
+          text,
+          duration: 3000,
+          style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+            marginTop: '4rem'
+          }
+        }).showToast();
+    }
     
     const addToCart = ({id, price, name, image, stock}, cantItems, size) => {
         
@@ -28,7 +47,7 @@ export const CartProvider = ({children}) => {
                 setTotalPrice(totalPrice + (price * cantItems))
             } else {
                 cartCopy[sizeIndex].cantItems = cartCopy[sizeIndex].cantItems + cantItems 
-                setCart(cartCopy)   
+                setCart(cartCopy) 
                 setTotalPrice(totalPrice + (cartCopy[sizeIndex].price * cartCopy[sizeIndex].cantItems))
             }   
         }
@@ -38,6 +57,8 @@ export const CartProvider = ({children}) => {
     const clear = () => {
         setCart([])
         setTotalPrice(0)
+        localStorage.removeItem('carrito')
+        successAlert('¡Limpieza de carrito realizada con éxito!')
     }
 
     //Remove
@@ -47,15 +68,16 @@ export const CartProvider = ({children}) => {
             if ( product.id === id && product.size !== size ) {
                 return product
             } else {
-                return product.id !== id
+                return product.id !== id 
             }
         })
         setTotalPrice(totalPrice - (price*cantItems))
         setCart(newCart)
+        successAlert('¡Producto eliminado!')
     }
 
     //RemoveQuantity
-    const removeItemQuantity = ( stockSelected, size, idItem, price ) => {
+    const removeItemQuantity = ( size, idItem ) => {
         const cartCopy = [...cart]
         const productIndex = cartCopy.findIndex(productInCart => productInCart.id === idItem && productInCart.size === size);
         if ( cartCopy[productIndex].cantItems > 1 ) {
@@ -66,7 +88,7 @@ export const CartProvider = ({children}) => {
     }
     
     //AddItem
-    const addItem = ( stockSelected, size, idItem, price ) => {
+    const addItem = ( stockSelected, size, idItem ) => {
         const cartCopy = [...cart]
         const productIndex = cartCopy.findIndex(productInCart => productInCart.id === idItem && productInCart.size === size);
         if ( cartCopy[productIndex].cantItems < stockSelected[size] ) {
@@ -75,6 +97,10 @@ export const CartProvider = ({children}) => {
             setTotalPrice(totalPrice + cartCopy[productIndex].price)
         }
     }
+
+    useEffect(()=>{
+        localStorage.setItem('carrito', JSON.stringify(cart))
+    },[cart])
 
     return (
 

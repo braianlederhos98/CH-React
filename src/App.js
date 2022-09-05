@@ -6,24 +6,36 @@ import Error404 from './components/404/Error404';
 import { Checkout } from './components/CheckOut/Checkout';
 import { CartProvider } from './components/CartContext/CartContext';
 import ItemDetailContainer from './components/ItemDetail/ItemDetailContainer';
+import Faq from './components/Faq/Faq';
+import UserContext from './components/UserContext/UserContext';
+import Login from './components/Login/Login';
+import Cuenta from './components/Cuenta/Cuenta';
+import PedidosFromFirebase from './components/Pedidos/PedidosFromFirebase';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
     //JSX
     <div>
       <CartProvider>
+      <UserContext>
         <BrowserRouter>
-            <NavBar></NavBar>
+            <NavBar/>
             <Routes>
               <Route path='/' element={<ItemListContainer />}></Route>
               <Route path='/cart' element={<Checkout/>}></Route>
               <Route path='/product/:idProduct' element={<ItemDetailContainer />}></Route>
               <Route path='/category/:categoryId' element={<ItemListContainer />}></Route>
               <Route path='/about' element={<ItemListContainer />}></Route>
-              <Route path='/faq' element={<div>Preguntas frecuentes</div>}></Route>
+              <Route path='/faq' element={<Faq/>}></Route>
               <Route path='*' element={<Error404/>}></Route>
+              <Route path='/login' element={<Login/>}/>
+              <Route path='/cuenta' element={<Cuenta/>}/>
+              <Route path='/pedidos' element={<PedidosFromFirebase/>}/>
             </Routes>
+            <Footer/>
         </BrowserRouter>
+      </UserContext>
       </CartProvider>
     </div>
     
