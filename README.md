@@ -9,13 +9,14 @@ Las funcionalidades de la página web son:
 - Visualizar el catálogo.
 - Acceder a diferentes categorías.
 - Acceder al detalle de cada producto con su información correspondiente.
-- Seleccionar la cantidad de productos 
-- Eliminar un producto
-- Vaciar carrito
-- Aumentar o disminuir la cantidad de cada producto
-- Registrarse en la web
-- Logearse como usuario
-- Acceder a los pedidos realizados
+- Seleccionar la cantidad de productos. 
+- Eliminar un producto.
+- Vaciar carrito.
+- Aumentar o disminuir la cantidad de cada producto.
+- Registrarse en la web.
+- Logearse como usuario.
+- Acceder a los pedidos realizados.
+- Recargar la página sin perder los artículos del carrito.
 
 
 ## Gráfica del proyecto
