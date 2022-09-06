@@ -16,10 +16,12 @@ const PedidosFromFirebase = () => {
     const getPedidos = async () => {
         if (user) {
             const q = query(collection(db, "ordenes"), where("buyer.email", "==", user.email));
-            let resultadoPedidos = []
             const querySnapshot = await getDocs(q);
+            let resultadoPedidos = []
             querySnapshot.forEach((doc) => {
-                return resultadoPedidos.push(doc.data())
+                let pedidos = doc.data()
+                pedidos.id = doc.id
+                return resultadoPedidos.push(pedidos)
             });
             return resultadoPedidos
         }

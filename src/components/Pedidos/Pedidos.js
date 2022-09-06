@@ -31,25 +31,23 @@ const Pedidos = ({pedidos}) => {
                             {
                                 pedidos.map((pedido)=> {
                                     return (
-                                        <>
-                                        <Box sx={{color:"white"}} textAlign='center'>
-                                            <Box>
-                                                <Typography>
-                                                    Fecha: {pedido.date}
-                                                </Typography>
-                                            </Box>
-                                            <Box>
-                                                <Typography>
-                                                    Nombre y Apellido: {pedido.buyer.name}
-                                                </Typography>
-                                            </Box>
-                                            <Box mb={8}>
-                                                <Typography>
-                                                    Total = ${pedido.total}
-                                                </Typography>
-                                            </Box>
-                                        </Box>
-                                        </>
+                                                <Box sx={{color:"white"}} textAlign='center' key={pedido.id}>
+                                                    <Box>
+                                                        <Typography>
+                                                            Fecha: {pedido.date}
+                                                        </Typography>
+                                                    </Box>
+                                                    <Box>
+                                                        <Typography>
+                                                            Nombre y Apellido: {pedido.buyer.name}
+                                                        </Typography>
+                                                    </Box>
+                                                    <Box mb={8}>
+                                                        <Typography>
+                                                            Total = ${pedido.total}
+                                                        </Typography>
+                                                    </Box>
+                                                </Box>
                                     )
                                 })
                             }

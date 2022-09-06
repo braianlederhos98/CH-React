@@ -19,7 +19,7 @@ const ItemListContainer = () => {
       return product
     })
     return productsList
-  }
+  } 
 
   useEffect(()=>{
     getProducts()

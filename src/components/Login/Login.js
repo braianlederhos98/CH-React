@@ -34,55 +34,55 @@ const Login = () => {
 
     return (
         <>
-        <Box sx={{paddingTop:'5rem',  minHeight:'73vh', backgroundColor:'#232323'}}>
             {
                 !user ? (
-                    <Paper elevation={5} sx={{width: '80%', margin: 'auto'}}>
-                        <Box>
-                            <Typography variant='h3' textAlign='center'>
-                                {
-                                    registro ? 'Registrate' : 'Iniciar sesión'
-                                }
-                            </Typography>
-                        </Box>
-                        <Box px={6} sx={{marginTop:'2rem', paddingBottom:'3rem'}}>
-                            <form onSubmit={(e)=>sendForm(e,formData)}>
-                                <TextField
-                                    label="Correo electrónico"
-                                    type="email"
-                                    name="email"
-                                    value={formData.email}
-                                    margin="dense"
-                                    fullWidth
-                                    variant="outlined"
-                                    helperText="Campo obligatorio"
-                                    onChange={handleChange}
-                                    required
-                                    />
-                                <TextField
-                                    label="Contraseña"
-                                    type="password"
-                                    name="password"
-                                    value={formData.password}
-                                    margin="dense"
-                                    fullWidth
-                                    variant="outlined"
-                                    helperText="Campo obligatorio"
-                                    onChange={handleChange}
-                                    required
-                                    />  
-                                    <Button type='submit' color='secondary' variant='outlined'>Enviar</Button>
-                            </form>
-                            <Box mt={1}>
-                                <Button color='secondary' variant='outlined' onClick={()=> setRegistro(!registro)}>
-                                        {registro ? 'Ya tengo una cuenta' : 'Quiero registrarme'}
-                                </Button>
+                    <Box sx={{paddingTop:'5rem',  minHeight:'73vh', backgroundColor:'#232323'}}>
+                        <Paper elevation={5} sx={{width: '80%', margin: 'auto'}}>
+                            <Box>
+                                <Typography variant='h3' textAlign='center'>
+                                    {
+                                        registro ? 'Registrate' : 'Iniciar sesión'
+                                    }
+                                </Typography>
                             </Box>
-                        </Box>
-                    </Paper>
+                            <Box px={6} sx={{marginTop:'2rem', paddingBottom:'3rem'}}>
+                                <form onSubmit={(e)=>sendForm(e,formData)}>
+                                    <TextField
+                                        label="Correo electrónico"
+                                        type="email"
+                                        name="email"
+                                        value={formData.email}
+                                        margin="dense"
+                                        fullWidth
+                                        variant="outlined"
+                                        helperText="Campo obligatorio"
+                                        onChange={handleChange}
+                                        required
+                                        />
+                                    <TextField
+                                        label="Contraseña"
+                                        type="password"
+                                        name="password"
+                                        value={formData.password}
+                                        margin="dense"
+                                        fullWidth
+                                        variant="outlined"
+                                        helperText="Campo obligatorio"
+                                        onChange={handleChange}
+                                        required
+                                        />  
+                                        <Button type='submit' color='secondary' variant='outlined'>Enviar</Button>
+                                </form>
+                                <Box mt={1}>
+                                    <Button color='secondary' variant='outlined' onClick={()=> setRegistro(!registro)}>
+                                            {registro ? 'Ya tengo una cuenta' : 'Quiero registrarme'}
+                                    </Button>
+                                </Box>
+                            </Box>
+                        </Paper>
+                    </Box>
                 ) : <ItemListContainer/>
             }
-        </Box>
         </>
     )
 }
