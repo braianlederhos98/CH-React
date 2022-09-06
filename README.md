@@ -20,7 +20,8 @@ Las funcionalidades de la página web son:
 
 ## Gráfica del proyecto
 
-![remerasjs](https://user-images.githubusercontent.com/104319378/183306600-c06be6b0-9550-4487-b8bd-34179f78f1a8.gif)
+
+[GifWeb.webm](https://user-images.githubusercontent.com/104319378/188685605-bb56a45e-946f-468b-b0f4-b7fd994a8a6b.webm)
 
 
 ## Dependencias
