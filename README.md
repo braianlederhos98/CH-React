@@ -4,12 +4,19 @@ Este proyecto es sobre una tienda online de indumetaria con estampas sobre difer
 
 ## Funcionalidades
 
-Por el momento solo podemos:
+Las funcionalidades de la página web son:
 
 - Visualizar el catálogo.
 - Acceder a diferentes categorías.
 - Acceder al detalle de cada producto con su información correspondiente.
 - Seleccionar la cantidad de productos 
+- Eliminar un producto
+- Vaciar carrito
+- Aumentar o disminuir la cantidad de cada producto
+- Registrarse en la web
+- Logearse como usuario
+- Acceder a los pedidos realizados
+
 
 ## Gráfica del proyecto
 
@@ -22,17 +29,6 @@ Por el momento solo podemos:
 - React-Router-DOM 6.3.0
 - Material UI
 - Material Icons
-
-## Componentes
-
-Los componentes son:
-
-- App.js
-- NavBar.js
-- ItemListContainer.js
-- ItemList.js
-- Item.js
-- ItemDetailContainer.js
-- ItemDetail.js
-- ItemCount.js
-- Checkout.js
+- Swiper JS
+- Toastify
+- Firebase
