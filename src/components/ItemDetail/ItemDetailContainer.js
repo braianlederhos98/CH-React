@@ -35,9 +35,9 @@ const ItemDetailContainer = () => {
     <>
       {
         loading ? <ItemDetail data={item}></ItemDetail> : (
-        <Box sx={{width:'100%', minHeight:'70vh' }}>
+        <Box sx={{width:'100%', minHeight:'70vh', backgroundColor:'#232323'}}>
           <Box sx={{position:'absolute', top:'30%', left:'40%'}}>
-            <Typography variant='h4'>
+            <Typography variant='h4' sx={{color:'white'}}>
               Cargando...
             </Typography>
           </Box>

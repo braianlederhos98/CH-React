@@ -1,4 +1,4 @@
-import { Button, TextField } from '@mui/material';
+import { Box, Button, TextField } from '@mui/material';
 import { useState } from 'react';
 
 
@@ -33,7 +33,7 @@ const ContactInfo = ({sendForm}) => {
                     helperText="Campo obligatorio"
                     onChange={handleChange}
                     required
-                />
+                    />
                 <TextField
                     label="Email"
                     type="email"
@@ -45,7 +45,7 @@ const ContactInfo = ({sendForm}) => {
                     helperText="Campo obligatorio"
                     onChange={handleChange}
                     required
-                />
+                    />
                 <TextField
                     label="Phone"
                     type="number"
@@ -57,8 +57,10 @@ const ContactInfo = ({sendForm}) => {
                     helperText="Campo obligatorio"
                     onChange={handleChange}
                     required
-                />
-                <Button type='submit'>Enviar</Button>
+                    />
+                <Box textAlign='center' mt={2}>
+                    <Button color='secondary' variant='outlined' size='medium' type='submit'>Enviar</Button>
+                </Box>
         </form>
     </>
   )

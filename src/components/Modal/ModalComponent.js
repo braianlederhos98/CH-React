@@ -56,7 +56,7 @@ const ModalComponent = () => {
   }
   
   return (
-    <div>
+    <>
       <Button variant="outlained" sx={{ fontWeight:'bold', fontSize:'1rem', color:'black', backgroundColor:'white'}} onClick={handleOpen}>COMPRAR</Button>
       <Modal
         open={open}
@@ -66,21 +66,30 @@ const ModalComponent = () => {
       >
         <Box sx={style}>
           {
-            success ? (<>
-              <Typography variant='h5' textAlign='center' sx={{color:'green'}}>
-                ¡Compra realizada con Éxito!
-              </Typography>
-              <Typography variant='h6' mt={2}>
-                Su código de compra es: {success}
-              </Typography>
-              <Link to='/'>
-                <Button onClick={()=>clear()}>Aceptar</Button>
-              </Link>
-            </>) : (<ContactInfo sendForm={sendForm}/>)
+            success ? (
+              <>
+                <Typography variant='h5' textAlign='center' sx={{color:'green'}}>
+                  ¡Compra realizada con Éxito!
+                </Typography>
+                <Typography variant='h6' mt={2}>
+                  Su código de compra es: {success}
+                </Typography>
+                <Link to='/'>
+                  <Button
+                    onClick={()=>clear()}
+                    color='secondary' 
+                    variant='outlined' 
+                    size='small'
+                  >
+                    Aceptar
+                  </Button>
+                </Link>
+              </>
+            ) : (<ContactInfo sendForm={sendForm}/>)
           }
         </Box>
       </Modal>
-    </div>
+    </>
   );
 }
 export default ModalComponent

@@ -31,11 +31,12 @@ const ItemListContainer = () => {
   }, [])
 
   return (
-    <Container sx={{marginTop: '5rem', marginBottom: '2rem', minHeight:'67vh'}}>
+    <Box sx={{ backgroundColor:'#232323', paddingTop: '5rem'}}>
+    <Container sx={{paddingBottom:'2rem', minHeight:'72vh', backgroundColor:'#232323'}}>
       {
         loading ? <ItemList producto={listItems} ></ItemList> : (
           <Box sx={{position:'absolute', top:'30%', left:'40%'}}>
-            <Typography variant='h4'>
+            <Typography variant='h4' sx={{color:'white'}}>
               Cargando...
             </Typography>
           </Box>
@@ -43,6 +44,7 @@ const ItemListContainer = () => {
       }
       
     </Container>
+      </Box>
   )
   
 }

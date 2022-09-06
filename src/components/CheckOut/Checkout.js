@@ -33,9 +33,10 @@ export const Checkout = () => {
 
   return (
     <>
-        <Container sx={{marginTop: '6rem', minHeight:'67vh'}}>
+      <Box sx={{paddingTop: '6rem', backgroundColor:'#232323'}}>
+        <Container sx={{ minHeight:'67vh'}}>
             <Card>
-                <Typography textAlign="center">Carrito</Typography>
+                <Typography textAlign="center" variant='h6'>Carrito</Typography>
                 {
                   cart.map((product, i)=>{
                     return (
@@ -45,7 +46,7 @@ export const Checkout = () => {
                           alt={`${product.name}`}
                           src={`/assets/img/${product.image}`}
                           sx={{maxWidth:'180px', height:'100%'}}
-                        />
+                          />
                         <Box>
                           <Typography component="div" variant="h5">
                             Nombre: {`${product.name}`}
@@ -113,6 +114,7 @@ export const Checkout = () => {
             </Card>
             
         </Container>
+      </Box>
     </>
   )
 }

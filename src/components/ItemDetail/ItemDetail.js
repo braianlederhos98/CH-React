@@ -27,15 +27,15 @@ const ItemDetail = ({data}) => {
     
 
     return (
-        <Box sx={{ margin:'auto', minHeight:'67vh' }}>
+        <Box sx={{ margin:'auto', minHeight:'73vh', backgroundColor:'#232323', paddingTop:'6rem'}}>
             <Paper 
                 elevation={5}
                 sx={{
                     width:'70%',
                     margin:'auto',
-                    marginTop:'6rem',
                     textAlign: 'center',
-                    maxHeight:'1000px'
+                    maxHeight:'1000px',
+                    backgroundColor:'black'
                 }}
             >           
                     <Grid 
@@ -60,19 +60,19 @@ const ItemDetail = ({data}) => {
                                 </Box>
                                 
                                 <Box mt={3}>
-                                    <Typography variant="h2" sx={{fontSize: '50px'}}>
+                                    <Typography variant="h2" sx={{fontSize: '50px', color:'white'}}>
                                         {`$${price}`}
                                     </Typography>
                                 </Box>
                                 <Box mt={3}>
-                                    <Typography variant="h4" sx={{fontSize: '25px'}}>
+                                    <Typography variant="h4" sx={{fontSize: '25px', color:'white'}}>
                                         Disponibles:
                                     </Typography>
-                                    <Typography variant="h6" >
+                                    <Typography variant="h6" sx={{color:'white'}}>
                                             
                                         Talle L: { stock !== undefined && stock.L }
                                     </Typography>
-                                    <Typography variant="h6" >
+                                    <Typography variant="h6" sx={{color:'white'}}>
                                         Talle XL: { stock !== undefined && stock.XL }
                                     </Typography>     
                                 </Box>

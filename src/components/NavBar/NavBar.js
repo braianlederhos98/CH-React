@@ -40,7 +40,11 @@ const NavBar = () => {
             <Toolbar disableGutters>
                 <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 10 }} >
                     <Link to={'/'}>
-                        <img src='/assets/img/logo.png' alt='Logo' />
+                        <img
+                            src='/assets/img/logo2.gif' 
+                            alt='Logo'
+                            style={{height:'60px'}} 
+                            />
                     </Link>
                 </Box>
                 <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -76,7 +80,7 @@ const NavBar = () => {
                         return (
                             <Link to={page[1]} key={page[0]} >
                                 <MenuItem onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center" sx={{color: 'gray', fontWeight: 700 }}>{page[0]}</Typography>
+                                    <Typography textAlign="center" sx={{color: 'purple', fontWeight: 700 }}>{page[0]}</Typography>
                                 </MenuItem>
                             </Link>
                         )
@@ -105,7 +109,7 @@ const NavBar = () => {
                         <Button
                         key={page[0]}
                         onClick={handleCloseNavMenu}
-                        sx={{ m: 2, color: '#555555', display: 'block', fontWeight: 700, fontSize: '12px'}}
+                        sx={{ m: 2, color: 'purple', display: 'block', fontWeight: 700, fontSize: '12px'}}
                         >
                             {page[0]}
                         </Button>
